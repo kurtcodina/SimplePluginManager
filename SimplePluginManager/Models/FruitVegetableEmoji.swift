@@ -31,7 +31,6 @@ enum FruitVegetableEmoji: String, CaseIterable {
     case avocado = "🥑"
     case tomato = "🍅"
     
-    // Vegetables
     case eggplant = "🍆"
     case carrot = "🥕"
     case earOfCorn = "🌽"

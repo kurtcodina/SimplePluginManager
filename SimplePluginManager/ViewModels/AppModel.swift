@@ -34,6 +34,10 @@ import SwiftUI
         }
     }
     
+    func installedVersionString(plugin: Plugin) -> Int? {
+        return installedPlugins.first(where: { $0.pluginID == plugin.id })?.installedVersion
+    }
+    
     func progress(plugin: Plugin) -> Double? {
         pluginInstallProgress[plugin.id]
     }

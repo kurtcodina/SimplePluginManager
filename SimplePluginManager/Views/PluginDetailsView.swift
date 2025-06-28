@@ -14,6 +14,17 @@ struct PluginDetailsView: View {
     
     var plugin: Plugin
     
+    
+    func installedVersionString() -> String {
+        guard let installedVersion = appModel.installedVersionString(plugin: plugin) else { return "" }
+        
+        let major = installedVersion / 1_000_000
+        let minor = (installedVersion % 1_000_000) / 1_000
+        let patch = installedVersion % 1_000
+        
+        return ("\(major).\(minor).\(patch)")
+    }
+    
     var body: some View {
         VStack (alignment: .center, spacing: 10) {
                 PluginIconView(plugin: plugin)
@@ -22,6 +33,11 @@ struct PluginDetailsView: View {
                     .font(.title)
                 Text("Version \(plugin.versionString)")
                     .font(.caption)
+            if !installedVersionString().isEmpty {
+                Text("Installed: v\(installedVersionString())")
+                    .font(.caption)
+                    .foregroundStyle(plugin.latestVersion > (appModel.installedVersionString(plugin: plugin) ?? 0) ? .red : .green)
+            }
                 PluginActionButton(plugin: plugin)
             Text(plugin.details)
                 .font(.body)

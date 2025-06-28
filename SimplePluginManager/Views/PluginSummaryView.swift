@@ -29,7 +29,6 @@ struct PluginSummaryView: View {
                         Text(plugin.name)
                             .font(.title)
                         Text("Version \(plugin.versionString)")
-                            .font(.caption)
                         PluginActionButton(plugin: plugin)
                     }
                 }
